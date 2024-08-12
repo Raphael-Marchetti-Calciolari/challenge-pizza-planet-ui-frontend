@@ -1,1 +1,1 @@
-# challenge-pizza-planet-ui-frontend
+# pizza-planet-ui
