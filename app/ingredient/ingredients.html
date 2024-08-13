@@ -46,6 +46,13 @@
       </nav>
     </header>
 
+    <!-- Notification Area -->
+
+      <div id="ingredient-alert" class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Great!</h4>
+        <p>Your ingredient was deleted successfully</p>
+      </div>
+
     <!-- TABLE -->
 
     <div class="container">
@@ -79,12 +86,19 @@
         <td class="col-4">{{name}}</td>
         <td class="col-3">${{price}}</td>
         <td class="col-3 text-center">
-          <div class="text-center">
+            <div class="text-center"></div>
             <a
               class="btn btn-success btn-sm update-ingredient"
               href="/app/ingredient/update-ingredient.html?_id={{_id}}"
               >Update</a
             >
+            <a
+              class="btn btn-danger btn-sm delete-ingredient"
+              href="javascript:void(0)"
+              onclick="deleteIngredient('{{_id}}')"
+              >Delete</a
+            >
+            </div>
           </div>
         </td>
       </tr>
@@ -114,5 +128,6 @@
     ></script>
 
     <script src="/js/ingredient/ingredient.js"></script>
+    <script src="/js/ingredient/delete-ingredient.js"></script>
   </body>
 </html>
