@@ -1,14 +1,15 @@
-function postIngredient(ingredient) {
+async function postIngredient(ingredient) {
 
-    fetch('http://127.0.0.1:5000/ingredient/', {
+    res = await fetch('http://127.0.0.1:5000/ingredient/', {
         method: 'POST',
         body: JSON.stringify(ingredient),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     })
-        .then(res => res.json())
-        .then(res => showNotification());
+    res = await res.json();
+    showNotification();
+    return res
 
 
 }
@@ -20,7 +21,9 @@ let ingredientForm = $("#ingredient-form");
 ingredientForm.submit(event => {
 
     let ingredient = getIngredientData();
-    postIngredient(ingredient);
+    postIngredient(ingredient).then(() => {
+        window.location.href = '/app/ingredient/ingredients.html';
+    });
 
     event.preventDefault();
     event.currentTarget.reset();
