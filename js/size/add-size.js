@@ -1,14 +1,15 @@
-function postSize(size) {
+async function postSize(size) {
 
-    fetch('http://127.0.0.1:5000/size/', {
+    res = await fetch('http://127.0.0.1:5000/size/', {
         method: 'POST',
         body: JSON.stringify(size),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     })
-        .then(res => res.json())
-        .then(res => showNotification());
+    res = await res.json();
+    showNotification();
+    return res
 
 
 }
@@ -20,7 +21,9 @@ let sizeForm = $("#size-form");
 sizeForm.submit(event => {
 
     let size = getSizeData();
-    postSize(size);
+    postSize(size).then(() => {
+        window.location.href = '/app/size/sizes.html';
+    });
 
     event.preventDefault();
     event.currentTarget.reset();
