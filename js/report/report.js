@@ -94,7 +94,6 @@ function renderBarGraph(data, htmlId, valueKey,
 }
 
 function renderPieChart(data, htmlId, label, title) {
-    console.log(JSON.stringify(data));
     const ctx = $(`#${htmlId}`)[0].getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -120,6 +119,19 @@ function renderPieChart(data, htmlId, label, title) {
     });
 }
 
+function renderTable(data, htmlId) {
+    const table = $(`#${htmlId}`);
+    let sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+    let rows = sortedData.slice(0, 10).map(([key, value], index) => `
+        <tr>
+            <td${index < 3 ? ' style="font-weight: bold; background-color: rgb(255, 255, 153);"': ''}>${key}</td>
+            <td${index < 3 ? ' style="font-weight: bold; background-color: rgb(255, 255, 153);"': ''}>${value}</td>
+        </tr>
+    `);
+    table.append(rows.join(''));
+}
+
+
 
 function loadMonthsGraph() {
     getMonthsData().then(data => {
@@ -129,6 +141,9 @@ function loadMonthsGraph() {
     getIngredientsData().then(data => {
         renderPieChart(data, "ingredients-graph", 'Ingredients',
             'Picked ingredients');
+    })
+    getCustomersData().then(data => {
+        renderTable(data, "customers-table");
     })
 }
 

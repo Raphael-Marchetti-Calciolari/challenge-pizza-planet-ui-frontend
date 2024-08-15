@@ -50,34 +50,32 @@
 
     <div class="container">
         <div class="jumbotron">
-            <h2 class="text-center">Reports</h2>
-            <div class="row">
-                <canvas id="months-graph" width="400" height="200"></canvas>
+            <h2 class="text-center" style="margin-bottom: 5%;">Reports</h2>
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col">
+                    <canvas id="months-graph" width="400" height="200"></canvas>
+                </div>
             </div>
-            <div class="row">
-                <canvas id="ingredients-graph" width="400" height="200"></canvas>
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col">
+                    <canvas id="ingredients-graph" width="400" height="200"></canvas>
+                </div>
             </div>
-            <div class="row">
-                <canvas id="barGraph" width="400" height="200"></canvas>
-            </div>
-            <div class="row">
-                <canvas id="pieChart" width="400" height="200"></canvas>
-            </div>
-            <div class="row">
-                <table id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                            <th>Column 3</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data rows will be added here -->
-                    </tbody>
-                </table>
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col">
+                    <table id="customers-table" style="width: 100%; text-align: center;"
+                    border="1" >
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Orders</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
 
