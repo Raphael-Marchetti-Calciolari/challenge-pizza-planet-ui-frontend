@@ -108,24 +108,27 @@ function renderPieChart(data, htmlId, label, title) {
             plugins: {
                 title: {
                     display: true,
-                    font: { weight: 'bold', size: 20 },
+                    font: { weight: 'bold', size: 20 }, // Decreased font size
                     text: title
                 },
                 legend: {
                     display: false
                 }
-            }
+            },
+            // responsive: true, // Added responsive option
+            aspectRatio: 3, // Adjusted aspectRatio to make the chart smaller
         }
     });
 }
 
-function renderTable(data, htmlId) {
+function renderTable(data, htmlId, slice=10, yellowRows=3) {
+    const yellowStyle = ' style="font-weight: bold; background-color: rgb(255, 255, 153);"';
     const table = $(`#${htmlId}`);
     let sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
-    let rows = sortedData.slice(0, 10).map(([key, value], index) => `
+    let rows = sortedData.slice(0, slice).map(([key, value], index) => `
         <tr>
-            <td${index < 3 ? ' style="font-weight: bold; background-color: rgb(255, 255, 153);"': ''}>${key}</td>
-            <td${index < 3 ? ' style="font-weight: bold; background-color: rgb(255, 255, 153);"': ''}>${value}</td>
+            <td${index < yellowRows ? `${yellowStyle}`: ''}>${key}</td>
+            <td${index < yellowRows ? `${yellowStyle}`: ''}>${value}</td>
         </tr>
     `);
     table.append(rows.join(''));
@@ -133,18 +136,31 @@ function renderTable(data, htmlId) {
 
 
 
-function loadMonthsGraph() {
+function loadData() {
     getMonthsData().then(data => {
         renderBarGraph(data, "months-graph", 'revenue',
             'Revenue per month', 'Months', 'Revenue');
     });
     getIngredientsData().then(data => {
-        renderPieChart(data, "ingredients-graph", 'Ingredients',
-            'Picked ingredients');
-    })
+        renderTable(data, "ingredients-table", 3, 0);
+        renderPieChart(data, "ingredients-graph", 'Orders',
+            'Ingredients distribution');
+    });
     getCustomersData().then(data => {
-        renderTable(data, "customers-table");
-    })
+        renderTable(data, "customers-table", 5);
+    });
+    getWeekdaysData().then(data => {
+        renderBarGraph(data, "weekdays-graph", 'revenue',
+            'Revenue per weekday', 'Weekdays', 'Revenue');
+        renderBarGraph(data, "weekdays-graph1", 'orders',
+            'Orders per weekday', 'Weekdays', 'Orders');
+    });
+    getHoursData().then(data => {
+        renderBarGraph(data, "hours-graph", 'revenue',
+            'Revenue per hour', 'Hours', 'Revenue');
+        renderBarGraph(data, "hours-graph1", 'orders',
+            'Orders per hour', 'Hours', 'Orders');
+    });
 }
 
-window.onload = loadMonthsGraph;
+window.onload = loadData;

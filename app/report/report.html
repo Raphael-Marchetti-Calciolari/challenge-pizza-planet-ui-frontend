@@ -49,29 +49,64 @@
     <!-- REPORTS -->
 
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron" style="align-items: center;">
             <h2 class="text-center" style="margin-bottom: 5%;">Reports</h2>
-            <div class="row" style="margin-bottom: 5%;">
+            <div class="row" style="margin-bottom: 3%;">
                 <div class="col">
                     <canvas id="months-graph" width="400" height="200"></canvas>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 5%;">
+            <div class="row" style="margin-bottom: 3%;">
                 <div class="col">
-                    <canvas id="ingredients-graph" width="400" height="200"></canvas>
+                    <h3 style="text-align: center; margin-bottom: 1%;">Most ordered ingredients</h3>
+                    <table id="ingredients-table" style="width: 100%; text-align: center;"
+                    border="1" >
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th># of Orders</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 5%;">
+            <div class="row" style="margin-bottom: 3%;">
                 <div class="col">
+                    <canvas id="ingredients-graph" width="300" height="150"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 3%;">
+                <div class="col">
+                    <h3 style="text-align: center; margin-bottom: 1%;">Best costumers</h3>
                     <table id="customers-table" style="width: 100%; text-align: center;"
                     border="1" >
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Orders</th>
+                                <th># of Orders</th>
                             </tr>
                         </thead>
                     </table>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 3%;">
+                <div class="col">
+                    <canvas id="weekdays-graph" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col">
+                    <canvas id="weekdays-graph1" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 3%;">
+                <div class="col">
+                    <canvas id="hours-graph" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col">
+                    <canvas id="hours-graph1" width="400" height="200"></canvas>
                 </div>
             </div>
         </div>
