@@ -93,13 +93,43 @@ function renderBarGraph(data, htmlId, valueKey,
     });
 }
 
+function renderPieChart(data, htmlId, label, title) {
+    console.log(JSON.stringify(data));
+    const ctx = $(`#${htmlId}`)[0].getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(data),
+            datasets: [{
+                label: label,
+                data: Object.values(data)
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    font: { weight: 'bold', size: 20 },
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+
 function loadMonthsGraph() {
-    console.log("Loading months graph")
     getMonthsData().then(data => {
-        console.log(JSON.stringify(data));
         renderBarGraph(data, "months-graph", 'revenue',
             'Revenue per month', 'Months', 'Revenue');
     });
+    getIngredientsData().then(data => {
+        renderPieChart(data, "ingredients-graph", 'Ingredients',
+            'Picked ingredients');
+    })
 }
 
 window.onload = loadMonthsGraph;
