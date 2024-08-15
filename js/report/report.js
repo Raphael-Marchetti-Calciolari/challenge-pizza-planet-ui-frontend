@@ -1,3 +1,25 @@
+function fillMockData() {
+    fetch('http://127.0.0.1:5000/mock/', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+    }).then(() => {
+        window.location.href = '/app/report/report.html';
+    })
+}
+
+function clearMockData() {
+    fetch('http://127.0.0.1:5000/mock/', {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+    }).then(() => {
+        window.location.href = '/app/report/report.html';
+    })
+}
+
 async function getMonthsData() {
     try {
         const response = await fetch('http://127.0.0.1:5000/report/months');
@@ -133,8 +155,6 @@ function renderTable(data, htmlId, slice=10, yellowRows=3) {
     `);
     table.append(rows.join(''));
 }
-
-
 
 function loadData() {
     getMonthsData().then(data => {
