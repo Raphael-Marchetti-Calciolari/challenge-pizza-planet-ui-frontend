@@ -6,18 +6,6 @@ function deleteIngredient(_id) {
         },
     })
     .then (() => {
-        showNotification();
-    })
-    .then(() => {
         window.location.href = '/app/ingredient/ingredients.html';
     });
-}
-
-/**
- * Shows a notification when the ingredient is deleted
- */
-function showNotification() {
-    let ingredientAlert = $("#ingredient-alert");
-    ingredientAlert.toggle();
-    setTimeout(() => ingredientAlert.toggle(), 5000);
 }

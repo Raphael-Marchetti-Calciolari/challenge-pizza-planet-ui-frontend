@@ -6,18 +6,6 @@ function deleteBeverage(_id) {
         },
     })
     .then (() => {
-        showNotification();
-    })
-    .then(() => {
         window.location.href = '/app/beverage/beverages.html';
     });
-}
-
-/**
- * Shows a notification when the beverage is deleted
- */
-function showNotification() {
-    let beverageAlert = $("#beverage-alert");
-    beverageAlert.toggle();
-    setTimeout(() => beverageAlert.toggle(), 5000);
 }
